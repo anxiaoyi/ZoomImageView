@@ -228,23 +228,13 @@ public class ZoomImageView extends ImageView implements OnGlobalLayoutListener, 
 			
 			float scale = 1.0F;
 			//The image is very horizontal large
-			if(drawableWidth > width && drawableHeight < height){
-				Log.d(TAG, String.format("DrawableWidth > ViewWidth"));
-				scale = width * 1.0F / drawableWidth;
-			}
-			
-			//The image is very vertical large
-			if(drawableHeight > height && drawableWidth < width){
-				Log.d(TAG, String.format("DrawableHeight > viewHeight"));
-				scale = height * 1.0F / drawableHeight;
-			}
-			
-			//The image is horizontal and vertical are larger than screen
-			if((drawableWidth > width && drawableHeight > height) || 
-					(drawableWidth < width && drawableHeight < height)){
-				Log.d(TAG, String.format("DrawableWidth > width && DrawableHeight > height || < && <"));
-				scale = Math.min(width * 1.0F / drawableWidth, height * 1.0F / drawableHeight);
-			}
+			if (drawableWidth > width && drawableHeight < height){
+                scale = width * 1.0F / drawableWidth;
+			} else if(drawableHeight > height && drawableWidth < width){
+                scale = height * 1.0F / drawableHeight;
+			} else {
+                scale = Math.min(width * 1.0F / drawableWidth, height * 1.0F / drawableHeight);
+            }
 			
 			mInitScale = scale;
 			mMaxScale = scale * 4;
